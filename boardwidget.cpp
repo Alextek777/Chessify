@@ -41,8 +41,8 @@ void BoardWidget::resizeEvent(QResizeEvent *event){
 void BoardWidget::mousePressEvent(QMouseEvent *event){
     int d_cell = width() / 8;
     curCell->x = event->pos().x() / d_cell;
-    curCell->y = event->pos().y() / d_cell;
-    qDebug() << "x : " << curCell->x << " y : " << curCell->y;
+    curCell->y = 7 - event->pos().y() / d_cell;
+    qDebug() << ChessCoordinates[curCell->x] << curCell->y + 1;
 }
 
 

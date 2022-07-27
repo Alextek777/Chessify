@@ -1,6 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 #include <QVector>
+#include <QStringList>
 
 
 enum Team{
@@ -10,6 +11,17 @@ enum Team{
 
 enum FigureType{
     King, Queen, Pawn, Rook, Knight, Bishop
+};
+
+static QList<char> ChessCoordinates = {
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H'
 };
 
 struct Move{
