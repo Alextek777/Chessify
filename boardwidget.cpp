@@ -36,7 +36,7 @@ void BoardWidget::paintEvent(QPaintEvent *event){
         pen.setWidth(4);
         pen.setColor(QColor("#2a9d8f"));
         painter.setPen(pen);
-        painter.drawRect(curCell->x*d_cell,drawArea - curCell->y*d_cell,d_cell,d_cell);
+        painter.drawRect(curCell->x*d_cell,drawArea - (curCell->y+1)*d_cell,d_cell,d_cell);
     }
 
 
