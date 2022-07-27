@@ -27,9 +27,17 @@ void BoardWidget::paintEvent(QPaintEvent *event){
         for(Figure* fig : core->players[i]->figures){
             QPixmap p(fig->imgPath);
             p = p.scaled(d_cell,d_cell,Qt::KeepAspectRatio);
-            painter.drawPixmap(fig->x*d_cell,drawArea - fig->y*d_cell,p.width(),p.height(),p);
+            painter.drawPixmap(fig->x*d_cell,drawArea - (fig->y + 1)*d_cell,p.width(),p.height(),p);
         }
 
+    //selected cell
+    if(curCell->x < 8 && curCell->y < 8 && curCell->x >=0 && curCell->y >= 0){
+        QPen pen;
+        pen.setWidth(4);
+        pen.setColor(QColor("#2a9d8f"));
+        painter.setPen(pen);
+        painter.drawRect(curCell->x*d_cell,drawArea - curCell->y*d_cell,d_cell,d_cell);
+    }
 
 
 }
@@ -42,7 +50,8 @@ void BoardWidget::mousePressEvent(QMouseEvent *event){
     int d_cell = width() / 8;
     curCell->x = event->pos().x() / d_cell;
     curCell->y = 7 - event->pos().y() / d_cell;
-    qDebug() << ChessCoordinates[curCell->x] << curCell->y + 1;
+    qDebug() << ChessCoordinates[curCell->x] << curCell->y;
+    update();
 }
 
 
