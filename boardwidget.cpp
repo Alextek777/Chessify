@@ -2,14 +2,14 @@
 
 BoardWidget::BoardWidget(QWidget *parent) : QWidget(parent){
     core = new Core();
-
+    curCell = new Move(-1,-1);
 }
 
 
 void BoardWidget::paintEvent(QPaintEvent *event){
     QPainter painter(this);
 
-    int drawArea = width() * 1;
+    int drawArea = width();
     int d_cell = drawArea / 8;
 
     //Grid
@@ -21,10 +21,6 @@ void BoardWidget::paintEvent(QPaintEvent *event){
                 painter.fillRect(d_cell*j,d_cell*i,d_cell,d_cell, QBrush(QColor(Qt::gray)));
         }
     }
-//    //Latters / numbers
-//    painter.fillRect(drawArea,0,width()-drawArea,height(),QBrush(QColor(Qt::black)));
-//    painter.fillRect(0,drawArea,width(),height()-drawArea,QBrush(QColor(Qt::black)));
-
 
     //pieces
     for(int i=0;i<core->players.size();i++)
@@ -40,4 +36,17 @@ void BoardWidget::paintEvent(QPaintEvent *event){
 
 void BoardWidget::resizeEvent(QResizeEvent *event){
     resize(width(),width());
+}
+
+void BoardWidget::mousePressEvent(QMouseEvent *event){
+    int d_cell = width() / 8;
+    curCell->x = event->pos().x() / d_cell;
+    curCell->y = event->pos().y() / d_cell;
+    qDebug() << "x : " << curCell->x << " y : " << curCell->y;
+}
+
+
+BoardWidget::~BoardWidget(){
+    delete core;
+    delete curCell;
 }
