@@ -5,10 +5,11 @@ Figure* Figure::create_pawn(const int start_x, const int start_y,const Team t){
     figure->figType = FigureType::Pawn;
     figure->x = start_x;
     figure->y = start_y;
+    int teamFlag = t == Team::White ? 1 : -1;
 
     figure->moves = {
-        Move(0,1),
-        Move(0,2)};
+        Move(0,1*teamFlag),
+        Move(0,2*teamFlag)};
 
     figure->imgPath = t == Team::White ? ":/images/src/src/pieces/wp.png" : ":/images/src/src/pieces/bp.png";
 

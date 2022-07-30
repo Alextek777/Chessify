@@ -33,7 +33,7 @@ void BoardWidget::paintEvent(QPaintEvent *event){
     //selected cell
     if(curCell->x < 8 && curCell->y < 8 && curCell->x >=0 && curCell->y >= 0){
         Figure* curFig = nullptr;
-        for(Figure* fig : core->players[0]->figures){
+        for(Figure* fig : core->players[core->currentTeam]->figures){
             if(fig->x == curCell->x && fig->y == curCell->y){
                 curFig = fig;
                 break;
@@ -50,7 +50,8 @@ void BoardWidget::paintEvent(QPaintEvent *event){
             pen.setColor(QColor("#e9c46a"));
             painter.setPen(pen);
 
-            for(Move move : curFig->moves)
+            QVector<Move> availableMoves = core->players[core->currentTeam]->getAvailableMoves(curFig);
+            for(Move move : availableMoves)
                 painter.drawRoundedRect((curCell->x + move.x)*d_cell + padding,drawArea - (curCell->y+1 + move.y)*d_cell + padding,
                                         d_cell - 2*padding,d_cell - 2*padding, 6, 6);
         }
