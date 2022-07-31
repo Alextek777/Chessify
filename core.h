@@ -9,6 +9,7 @@ public:
     QVector<Player*> players;
 
     Team currentTeam;
+    Figure* curFig = nullptr;
 public:
     Core();
 };
