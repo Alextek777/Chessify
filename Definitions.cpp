@@ -143,3 +143,9 @@ Figure* Figure::create_queen(const int start_x, const int start_y,const Team t){
 
     return figure;
 }
+
+std::ostream& operator<<(std::ostream& os, const Move& dt)
+{
+    os << "[" << ChessCoordinates[dt.y] << dt.x << "]";
+    return os;
+}

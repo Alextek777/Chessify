@@ -18,6 +18,7 @@ void Core::currentCellChanged(Move *curCell){
                 curFig->x = curCell->x;
                 curFig->y = curCell->y;
                 moveHistory[currentTeam].push_back(*curCell);
+                std::cout << curCell;
                 currentTeam = currentTeam == White ? Black : White;
                 break;
             }

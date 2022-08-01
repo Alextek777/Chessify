@@ -1,6 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 #include <QVector>
+#include <ostream>
 #include <QStringList>
 
 
@@ -28,6 +29,7 @@ struct Move{
     Move(int x_current, int y_current): x(x_current), y(y_current){}
     int x;
     int y;
+    friend std::ostream& operator<<(std::ostream& os, const Move& dt);
 };
 
 class Figure{

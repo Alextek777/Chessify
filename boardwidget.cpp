@@ -60,7 +60,6 @@ void BoardWidget::mousePressEvent(QMouseEvent *event){
         int d_cell = width() / 8;
         curCell->x = event->pos().x() / d_cell;
         curCell->y = 7 - event->pos().y() / d_cell;
-        qDebug() << ChessCoordinates[curCell->x] << curCell->y;
         emit currentCellChanged(curCell);
         core->curFig = nullptr;
         if(curCell->x < 8 && curCell->y < 8 && curCell->x >=0 && curCell->y >= 0){
