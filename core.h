@@ -13,6 +13,7 @@ public:
     virtual ~Core() {};
 public:
     QVector<Player*> players;
+    QVector<QVector<Move>> moveHistory;
 
     Team currentTeam;
     Figure* curFig = nullptr;

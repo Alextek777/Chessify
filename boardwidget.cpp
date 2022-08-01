@@ -56,20 +56,22 @@ void BoardWidget::resizeEvent(QResizeEvent *event){
 }
 
 void BoardWidget::mousePressEvent(QMouseEvent *event){
-    int d_cell = width() / 8;
-    curCell->x = event->pos().x() / d_cell;
-    curCell->y = 7 - event->pos().y() / d_cell;
-    qDebug() << ChessCoordinates[curCell->x] << curCell->y;
-    core->curFig = nullptr;
-    if(curCell->x < 8 && curCell->y < 8 && curCell->x >=0 && curCell->y >= 0){
-        for(Figure* fig : core->players[core->currentTeam]->figures){
-            if(fig->x == curCell->x && fig->y == curCell->y){
-                core->curFig = fig;
-                break;
+    if(event->button() == Qt::LeftButton){
+        int d_cell = width() / 8;
+        curCell->x = event->pos().x() / d_cell;
+        curCell->y = 7 - event->pos().y() / d_cell;
+        qDebug() << ChessCoordinates[curCell->x] << curCell->y;
+        emit currentCellChanged(curCell);
+        core->curFig = nullptr;
+        if(curCell->x < 8 && curCell->y < 8 && curCell->x >=0 && curCell->y >= 0){
+            for(Figure* fig : core->players[core->currentTeam]->figures){
+                if(fig->x == curCell->x && fig->y == curCell->y){
+                    core->curFig = fig;
+                    break;
+                }
             }
         }
     }
-    emit currentCellChanged(curCell);
 
     update();
 }
