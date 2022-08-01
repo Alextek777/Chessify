@@ -18,13 +18,13 @@ private:
 
 public:
     explicit BoardWidget(QWidget *parent = nullptr);
-    ~BoardWidget();
+    virtual ~BoardWidget();
 protected:
     void paintEvent(QPaintEvent *event)override;
     void resizeEvent(QResizeEvent *event)override;
     void mousePressEvent(QMouseEvent *event)override;
 signals:
-
+    void currentCellChanged(Move *curCell);
 };
 
 #endif // BOARDWIDGET_H

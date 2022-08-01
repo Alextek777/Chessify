@@ -1,17 +1,23 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include <QObject>
+#include <QDebug>
+
 #include "player.h"
 
-class Core
+class Core : public QObject
 {
+public:
+    Core(QObject *parent = 0);
+    virtual ~Core() {};
 public:
     QVector<Player*> players;
 
     Team currentTeam;
     Figure* curFig = nullptr;
-public:
-    Core();
+public slots:
+    void currentCellChanged(Move *curCell);
 };
 
 #endif // CORE_H

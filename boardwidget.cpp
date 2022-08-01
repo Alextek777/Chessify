@@ -3,6 +3,8 @@
 BoardWidget::BoardWidget(QWidget *parent) : QWidget(parent){
     core = new Core();
     curCell = new Move(-1,-1);
+
+    connect(this,&BoardWidget::currentCellChanged,core,&Core::currentCellChanged);
 }
 
 
@@ -67,6 +69,7 @@ void BoardWidget::mousePressEvent(QMouseEvent *event){
             }
         }
     }
+    emit currentCellChanged(curCell);
 
     update();
 }
