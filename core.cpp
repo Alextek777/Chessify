@@ -9,22 +9,9 @@ Core::Core(QObject *parent) : QObject(parent){
     moveHistory.resize(players.size());
 }
 
-QVector<Move> Core::getAvailableMoves()const{
-    QVector<Move> availableMoves;
-
-    for(Move move : curFig->moves){
-        bool moveIsAvailable = true;
-        for(Figure* fig : players[currentTeam]->figures){
-            if(curFig->x + move.x == fig->x && curFig->y + move.y == fig->y){
-                moveIsAvailable = false;
-                break;
-            }
-        }
-        if(moveIsAvailable)
-            availableMoves.push_back(move);
-    }
-
-    return availableMoves;
+QVector<Move> Core::getAvailableMoves(){
+    AvailabeMovesFinder finder(players,curFig,currentTeam);
+    return finder.find();
 }
 
 

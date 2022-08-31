@@ -5,7 +5,8 @@
 
 class AvailabeMovesFinder{
     QVector<Player*> &players;
-    Figure *fig;
+    Figure *curFig;
+    Team currentTeam;
 
     QVector<Move> kingFind();
     QVector<Move> queenFind();
@@ -14,7 +15,7 @@ class AvailabeMovesFinder{
     QVector<Move> knightFind();
     QVector<Move> bishopFind();
 public:
-    explicit AvailabeMovesFinder(QVector<Player*> &players, Figure *fig);
+    explicit AvailabeMovesFinder(QVector<Player*> &players, Figure *fig, Team currentTeam);
     QVector<Move> find();
 };
 
