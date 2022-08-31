@@ -11,6 +11,7 @@ Core::Core(QObject *parent) : QObject(parent){
 
 QVector<Move> Core::getAvailableMoves()const{
     QVector<Move> availableMoves;
+
     for(Move move : curFig->moves){
         bool moveIsAvailable = true;
         for(Figure* fig : players[currentTeam]->figures){
@@ -22,6 +23,7 @@ QVector<Move> Core::getAvailableMoves()const{
         if(moveIsAvailable)
             availableMoves.push_back(move);
     }
+
     return availableMoves;
 }
 
@@ -35,18 +37,20 @@ bool Core::moveIsAvailable(Move *curCell){
     return false;
 }
 
-void Core::currentCellChanged(Move *curCell){
-    if(curFig != nullptr){
-        for(Move move : curFig->moves){
-
-            if(moveIsAvailable(curCell)){
-                curFig->x = curCell->x;
-                curFig->y = curCell->y;
-                moveHistory[currentTeam].push_back(*curCell);
-                std::cout << curCell;
-                currentTeam = currentTeam == White ? Black : White;
-                break;
-            }
+void Core::moveFigure(Move *curCell){
+    for(Move move : curFig->moves)
+        if(moveIsAvailable(curCell)){
+            curFig->x = curCell->x;
+            curFig->y = curCell->y;
+            curFig->moved = true;
+            moveHistory[currentTeam].push_back(*curCell);
+            std::cout << curCell;
+            currentTeam = currentTeam == White ? Black : White;
+            break;
         }
-    }
+}
+
+void Core::currentCellChanged(Move *curCell){
+    if(curFig != nullptr)
+        moveFigure(curCell);
 }

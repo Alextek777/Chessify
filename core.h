@@ -7,8 +7,7 @@
 
 #include "player.h"
 
-class Core : public QObject
-{
+class Core : public QObject{
 public:
     Core(QObject *parent = 0);
     virtual ~Core() {};
@@ -22,6 +21,9 @@ public:
 public slots:
     void currentCellChanged(Move *curCell);
     bool moveIsAvailable(Move *curCell);
+private:
+    void moveFigure(Move *curCell);
 };
+
 
 #endif // CORE_H

@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Definitions.cpp \
+    availabemovesfinder.cpp \
     boardwidget.cpp \
     core.cpp \
     main.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     Definitions.h \
+    availabemovesfinder.h \
     boardwidget.h \
     core.h \
     mainwindow.h \
