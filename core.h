@@ -20,6 +20,7 @@ public:
     Figure* curFig = nullptr;
 public slots:
     void currentCellChanged(Move *curCell);
+    bool moveIsAvailable(Move *curCell);
 };
 
 #endif // CORE_H
