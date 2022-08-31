@@ -18,6 +18,7 @@ public:
 
     Team currentTeam;
     Figure* curFig = nullptr;
+    QVector<Move> getAvailableMoves()const;
 public slots:
     void currentCellChanged(Move *curCell);
     bool moveIsAvailable(Move *curCell);

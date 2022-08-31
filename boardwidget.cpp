@@ -43,7 +43,7 @@ void BoardWidget::paintEvent(QPaintEvent *event){
         pen.setColor(QColor("#e9c46a"));
         painter.setPen(pen);
 
-        QVector<Move> availableMoves = core->players[core->currentTeam]->getAvailableMoves(core->curFig);
+        QVector<Move> availableMoves = core->getAvailableMoves();
         for(Move move : availableMoves)
             painter.drawRoundedRect((curCell->x + move.x)*d_cell + padding,drawArea - (curCell->y+1 + move.y)*d_cell + padding,
                                     d_cell - 2*padding,d_cell - 2*padding, 6, 6);

@@ -11,7 +11,6 @@ public:
 
 public:
     Player(Team t);
-    QVector<Move> getAvailableMoves(Figure *fig)const;
 };
 
 #endif // PLAYER_H
