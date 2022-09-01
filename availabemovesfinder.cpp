@@ -7,21 +7,21 @@ AvailabeMovesFinder::AvailabeMovesFinder(QVector<Player*> &players, Figure *fig,
 
 QVector<Move> AvailabeMovesFinder::find(){
     switch (curFig->figType) {
-        case FigureType::Bishop:
-            return bishopFind();
-        case FigureType::King:
-            return kingFind();
-        case FigureType::Knight:
-                return knightFind();
-        case FigureType::Pawn:
-                return pawnFind();
-        case FigureType::Queen:
-                return queenFind();
-        case FigureType::Rook:
-                return rookFind();
+    case FigureType::Bishop:
+        return bishopFind();
+    case FigureType::King:
+        return kingFind();
+    case FigureType::Knight:
+        return knightFind();
+    case FigureType::Pawn:
+        return pawnFind();
+    case FigureType::Queen:
+        return queenFind();
+    case FigureType::Rook:
+        return rookFind();
 
-        default:
-            return QVector<Move>();  //empty moves
+    default:
+        return QVector<Move>();  //empty moves
     }
 }
 
@@ -60,9 +60,11 @@ QVector<Move> AvailabeMovesFinder::queenFind(){
 QVector<Move> AvailabeMovesFinder::pawnFind(){
     QVector<Move> availableMoves;
     for(Move move : curFig->moves){
+        if(curFig->moved && move.y == 2)
+            break;
         bool moveIsAvailable = true;
-        for(Figure* fig : players[currentTeam]->figures){
-            if(curFig->x + move.x == fig->x && curFig->y + move.y == fig->y){
+        for(Figure* fig : players[0]->figures + players[1]->figures){
+            if(Figure::intersect(curFig,move,fig) && !Figure::outOfRange(curFig,move)){
                 moveIsAvailable = false;
                 break;
             }
@@ -70,23 +72,22 @@ QVector<Move> AvailabeMovesFinder::pawnFind(){
         if(moveIsAvailable)
             availableMoves.push_back(move);
     }
-    if(curFig->moved)
-        availableMoves.pop_back();
     return availableMoves;
 }
 
 QVector<Move> AvailabeMovesFinder::rookFind(){
     QVector<Move> availableMoves;
-    for(Move move : curFig->moves){
+    for(int i=0;i<7*4;i++){
         bool moveIsAvailable = true;
         for(Figure* fig : players[currentTeam]->figures){
-            if(curFig->x + move.x == fig->x && curFig->y + move.y == fig->y){
+            if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
                 moveIsAvailable = false;
+                i = (i/7 + 1)*7-1;
                 break;
             }
         }
         if(moveIsAvailable)
-            availableMoves.push_back(move);
+            availableMoves.push_back(curFig->moves[i]);
     }
     return availableMoves;
 }
@@ -96,7 +97,7 @@ QVector<Move> AvailabeMovesFinder::knightFind(){
     for(Move move : curFig->moves){
         bool moveIsAvailable = true;
         for(Figure* fig : players[currentTeam]->figures){
-            if(curFig->x + move.x == fig->x && curFig->y + move.y == fig->y){
+            if(Figure::intersect(curFig,move,fig)){
                 moveIsAvailable = false;
                 break;
             }

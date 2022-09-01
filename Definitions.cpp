@@ -149,3 +149,12 @@ std::ostream& operator<<(std::ostream& os, const Move& dt)
     os << "[" << ChessCoordinates[dt.y] << dt.x << "]";
     return os;
 }
+
+bool Figure::intersect(Figure *fig1,Move &move, Figure *fig2){
+    return (fig1->x + move.x == fig2->x && fig1->y + move.y == fig2->y);
+}
+
+bool Figure::outOfRange(Figure *fig,Move &move){
+    return fig->x + move.x < 0 || fig->x + move.x > 8 ||
+            fig->y + move.y < 0 || fig->y + move.y > 8;
+}

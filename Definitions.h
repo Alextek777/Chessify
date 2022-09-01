@@ -51,6 +51,9 @@ public:
     static Figure* create_rook(const int start_x, const int start_y,const Team t);
     static Figure* create_bishop(const int start_x, const int start_y,const Team t);
     static Figure* create_knight(const int start_x, const int start_y,const Team t);
+
+    static bool intersect(Figure *fig1,Move &move, Figure *fig2);
+    static bool outOfRange(Figure *fig,Move &move);
 };
 
 
