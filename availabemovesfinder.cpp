@@ -43,16 +43,30 @@ QVector<Move> AvailabeMovesFinder::kingFind(){
 
 QVector<Move> AvailabeMovesFinder::queenFind(){
     QVector<Move> availableMoves;
-    for(Move move : curFig->moves){
+    for(int i=0;i<7*4;i++){
         bool moveIsAvailable = true;
         for(Figure* fig : players[currentTeam]->figures){
-            if(curFig->x + move.x == fig->x && curFig->y + move.y == fig->y){
+            if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
                 moveIsAvailable = false;
+                i = (i/7 + 1)*7-1;
                 break;
             }
         }
         if(moveIsAvailable)
-            availableMoves.push_back(move);
+            availableMoves.push_back(curFig->moves[i]);
+    }
+
+    for(int i=7*4;i<7*8;i++){
+        bool moveIsAvailable = true;
+        for(Figure* fig : players[currentTeam]->figures){
+            if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
+                moveIsAvailable = false;
+                i = (i/7 + 1)*7-1;
+                break;
+            }
+        }
+        if(moveIsAvailable)
+            availableMoves.push_back(curFig->moves[i]);
     }
     return availableMoves;
 }
@@ -97,7 +111,7 @@ QVector<Move> AvailabeMovesFinder::knightFind(){
     for(Move move : curFig->moves){
         bool moveIsAvailable = true;
         for(Figure* fig : players[currentTeam]->figures){
-            if(Figure::intersect(curFig,move,fig)){
+            if(Figure::intersect(curFig,move,fig) && !Figure::outOfRange(curFig,move)){
                 moveIsAvailable = false;
                 break;
             }
@@ -110,16 +124,17 @@ QVector<Move> AvailabeMovesFinder::knightFind(){
 
 QVector<Move> AvailabeMovesFinder::bishopFind(){
     QVector<Move> availableMoves;
-    for(Move move : curFig->moves){
+    for(int i=0;i<7*4;i++){
         bool moveIsAvailable = true;
         for(Figure* fig : players[currentTeam]->figures){
-            if(curFig->x + move.x == fig->x && curFig->y + move.y == fig->y){
+            if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
                 moveIsAvailable = false;
+                i = (i/7 + 1)*7-1;
                 break;
             }
         }
         if(moveIsAvailable)
-            availableMoves.push_back(move);
+            availableMoves.push_back(curFig->moves[i]);
     }
     return availableMoves;
 }
