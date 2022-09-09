@@ -44,7 +44,15 @@ void BoardWidget::paintEvent(QPaintEvent *event){
         painter.setPen(pen);
 
         QVector<Move> availableMoves = core->getAvailableMoves();
+        QVector<Move> availableAtacks = core->getAvailableAtacks();
+
         for(Move move : availableMoves)
+            painter.drawRoundedRect((curCell->x + move.x)*d_cell + padding,drawArea - (curCell->y+1 + move.y)*d_cell + padding,
+                                    d_cell - 2*padding,d_cell - 2*padding, 6, 6);
+
+        pen.setColor(QColor("#FF0000"));
+        painter.setPen(pen);
+        for(Move move : availableAtacks)
             painter.drawRoundedRect((curCell->x + move.x)*d_cell + padding,drawArea - (curCell->y+1 + move.y)*d_cell + padding,
                                     d_cell - 2*padding,d_cell - 2*padding, 6, 6);
     }

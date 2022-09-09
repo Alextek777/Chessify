@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include <iostream>
-#include "availabemovesfinder.h"
+#include "availableactionsfinder.h"
 #include "player.h"
 
 class Core : public QObject{
@@ -18,6 +18,7 @@ public:
     Team currentTeam;
     Figure* curFig = nullptr;
     QVector<Move> getAvailableMoves();
+    QVector<Move>  getAvailableAtacks();
 public slots:
     void currentCellChanged(Move *curCell);
     bool moveIsAvailable(Move *curCell);
