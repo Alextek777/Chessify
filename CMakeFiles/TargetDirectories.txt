@@ -1,4 +1,0 @@
-/home/kalex/golang/src/Chessify/CMakeFiles/chessify.dir
-/home/kalex/golang/src/Chessify/CMakeFiles/edit_cache.dir
-/home/kalex/golang/src/Chessify/CMakeFiles/rebuild_cache.dir
-/home/kalex/golang/src/Chessify/CMakeFiles/chessify_autogen.dir

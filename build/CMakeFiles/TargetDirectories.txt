@@ -1,0 +1,4 @@
+/home/horizont/practice/Chessify/build/CMakeFiles/rebuild_cache.dir
+/home/horizont/practice/Chessify/build/CMakeFiles/chessify.dir
+/home/horizont/practice/Chessify/build/CMakeFiles/edit_cache.dir
+/home/horizont/practice/Chessify/build/CMakeFiles/chessify_autogen.dir

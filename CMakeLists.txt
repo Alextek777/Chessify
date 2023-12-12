@@ -8,9 +8,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(Sources availableactionsfinder.cpp  boardwidget.cpp  core.cpp  Definitions.cpp  main.cpp  mainwindow.cpp  player.cpp)
-set(Headers availableactionsfinder.h  boardwidget.h  core.h  Definitions.h  mainwindow.h  player.h)
 
+set(Sources src/availableactionsfinder.cpp  src/boardwidget.cpp  src/core.cpp  src/Definitions.cpp  src/main.cpp  src/mainwindow.cpp  src/player.cpp)
+set(Headers src/availableactionsfinder.h  src/boardwidget.h  src/core.h  src/Definitions.h  src/mainwindow.h  src/player.h)
 
 
 add_executable( chessify ${Sources} ${Headers} )

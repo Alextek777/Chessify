@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+d08597bac07b02147c5dd289e2791930 CMakeFiles/chessify_autogen
