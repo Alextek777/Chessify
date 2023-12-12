@@ -30,3 +30,11 @@ tasks:
     cmds:
       - task cmake
       - task make
+
+  run:
+    aliases:
+      - run
+    desc: "Running Chessify"
+    cmds:
+      - task build
+      - ./build/chessify

@@ -1,14 +1,17 @@
 #include "mainwindow.h"
+#include <memory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    BoardWidget* board = new BoardWidget();
+    //std::unique_ptr<BoardWidget> board(new BoardWidget());
+    board = new BoardWidget();
     board->show();
 }
 
 MainWindow::~MainWindow()
 {
-
+    if(board)
+        delete board;
 }
 

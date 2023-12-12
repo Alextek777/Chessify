@@ -7,6 +7,8 @@
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+private:
+    BoardWidget *board;
 
 public:
     MainWindow(QWidget *parent = nullptr);
