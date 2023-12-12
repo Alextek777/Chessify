@@ -196,13 +196,13 @@ QVector<Move> AvailabeAtacksFinder::pawnFind(){
 }
 
 QVector<Move> AvailabeAtacksFinder::rookFind(){
-
+        return QVector<Move>();
 }
 
 QVector<Move> AvailabeAtacksFinder::knightFind(){
-
+        return QVector<Move>();
 }
 
 QVector<Move> AvailabeAtacksFinder::bishopFind(){
-
+        return QVector<Move>();
 }
