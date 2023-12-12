@@ -3,8 +3,13 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    mainLayout = new QGridLayout(this);
     board = new BoardWidget();
-    board->show();
+    centralWidget = new QWidget(this);
+
+    mainLayout->addWidget(board, 0, 0);
+    centralWidget->setLayout(mainLayout);
+    setCentralWidget(centralWidget);
 }
 
 MainWindow::~MainWindow()
@@ -13,3 +18,6 @@ MainWindow::~MainWindow()
         delete board;
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event){
+    resize(width(),width());
+}

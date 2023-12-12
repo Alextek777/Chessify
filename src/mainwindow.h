@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "boardwidget.h"
+#include <QGridLayout>
 
 class MainWindow : public QMainWindow
 {
@@ -10,8 +11,13 @@ class MainWindow : public QMainWindow
 private:
     BoardWidget *board;
 
+    QWidget* centralWidget;
+    QGridLayout* mainLayout;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    
+protected:
+    void resizeEvent(QResizeEvent *event)override;
 };
 #endif // MAINWINDOW_H
