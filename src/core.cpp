@@ -28,17 +28,44 @@ bool Core::moveIsAvailable(Move *curCell){
         return false;
 }
 
+bool Core::atackIsAvailable(Move *curCell){
+        QVector<Move> availableMoves = getAvailableAtacks();
+        for(auto cMove : availableMoves){
+                if(curFig->x + cMove.x == curCell->x && curFig->y + cMove.y == curCell->y)
+                        return true;
+        }
+        return false;
+}
+
+
 void Core::moveFigure(Move *curCell){
         for(Move move : curFig->moves)
-                if(moveIsAvailable(curCell)){
-                        curFig->x = curCell->x;
-                        curFig->y = curCell->y;
-                        curFig->moved = true;
-                        moveHistory[currentTeam].push_back(*curCell);
-                        std::cout << curCell;
-                        currentTeam = currentTeam == White ? Black : White;
+                if(atackIsAvailable(curCell)){
+                        makeKill(curCell);
                         break;
                 }
+                else if(moveIsAvailable(curCell)){
+                        makeMove(curCell);
+                        break;
+                }
+}
+
+void Core::makeMove(Move *curCell){
+        curFig->x = curCell->x;
+        curFig->y = curCell->y;
+        curFig->moved = true;
+        moveHistory[currentTeam].push_back(*curCell);
+        std::cout << curCell;
+        currentTeam = currentTeam == White ? Black : White;
+}
+
+void Core::makeKill(Move *curCell){
+        makeMove(curCell);
+        bool killedSuccessfull = players[currentTeam]->kill(curCell);
+        if (!killedSuccessfull)
+                std::cout << "WARNING: kill was not successful!\n";
+        else 
+                std::cout << "kill was successful!\n";      
 }
 
 void Core::currentCellChanged(Move *curCell){

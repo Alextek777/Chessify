@@ -6,11 +6,14 @@
 class Player
 {
 public:
+    Player(Team t);
+
     Team team;
     QVector<Figure*> figures;
-
-public:
-    Player(Team t);
+    QVector<Figure*> killedFigures;
+    
+    bool kill(const Move* curCell);
+    Figure* findFigure(const Move* curCell);
 };
 
 #endif // PLAYER_H

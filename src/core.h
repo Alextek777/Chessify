@@ -22,8 +22,14 @@ public:
 public slots:
     void currentCellChanged(Move *curCell);
     bool moveIsAvailable(Move *curCell);
+    bool atackIsAvailable(Move *curCell);
 private:
     void moveFigure(Move *curCell);
+
+    void makeMove(Move *curCell);
+    void makeKill(Move *curCell);
+
+
 };
 
 
