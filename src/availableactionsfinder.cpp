@@ -74,15 +74,19 @@ QVector<Move> AvailabeMovesFinder::pawnFind(){
         for(Move move : curFig->moves){
                 if(curFig->moved && (move.y == 2 || move.y == -2)) //not include 2 steps forward move if pawn has already moved
                         break;
+                
                 bool moveIsAvailable = true;
-                for(Figure* fig : players[currentTeam]->figures + players[enemyTeam]->figures){
+                for(Figure* fig : (players[currentTeam]->figures + players[enemyTeam]->figures)){
                         if(Figure::intersect(curFig,move,fig) && !Figure::outOfRange(curFig,move)){
                                 moveIsAvailable = false;
                                 break;
                         }
                 }
-                if(moveIsAvailable)
+                if(moveIsAvailable){
                         availableMoves.push_back(move);
+                        continue;
+                }
+                break;
         }
         return availableMoves;
 }
