@@ -21,6 +21,8 @@ protected:
         QVector<Move> rookFind();
         QVector<Move> knightFind();
         QVector<Move> bishopFind();
+
+        QVector<Move> horizontal_vertical_availableMoves(const int totalMoveDirections);
 public:
         QVector<Move> find();
         explicit AvailabeMovesFinder(QVector<Player*> &players, Figure *fig, Team currentTeam);

@@ -155,6 +155,6 @@ bool Figure::intersect(Figure *fig1,Move &move, Figure *fig2){
 }
 
 bool Figure::outOfRange(Figure *fig,Move &move){
-    return fig->x + move.x < 0 || fig->x + move.x > 8 ||
-            fig->y + move.y < 0 || fig->y + move.y > 8;
+    return fig->x + move.x < 0 || fig->x + move.x >= 8 ||
+            fig->y + move.y < 0 || fig->y + move.y >= 8;
 }

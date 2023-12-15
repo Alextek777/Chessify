@@ -66,33 +66,7 @@ QVector<Move> AvailabeMovesFinder::kingFind(){
 }
 
 QVector<Move> AvailabeMovesFinder::queenFind(){
-        QVector<Move> availableMoves;
-        for(int i=0;i<7*4;i++){
-                bool moveIsAvailable = true;
-                for(Figure* fig : players[currentTeam]->figures){
-                        if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
-                                moveIsAvailable = false;
-                                i = (i/7 + 1)*7-1;
-                                break;
-                        }
-                }
-                if(moveIsAvailable)
-                        availableMoves.push_back(curFig->moves[i]);
-        }
-
-        for(int i=7*4;i<7*8;i++){
-                bool moveIsAvailable = true;
-                for(Figure* fig : players[currentTeam]->figures){
-                        if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
-                                moveIsAvailable = false;
-                                i = (i/7 + 1)*7-1;
-                                break;
-                        }
-                }
-                if(moveIsAvailable)
-                        availableMoves.push_back(curFig->moves[i]);
-        }
-        return availableMoves;
+        return horizontal_vertical_availableMoves(8);
 }
 
 QVector<Move> AvailabeMovesFinder::pawnFind(){
@@ -114,20 +88,7 @@ QVector<Move> AvailabeMovesFinder::pawnFind(){
 }
 
 QVector<Move> AvailabeMovesFinder::rookFind(){
-        QVector<Move> availableMoves;
-        for(int i=0;i<7*4;i++){
-                bool moveIsAvailable = true;
-                for(Figure* fig : players[currentTeam]->figures){
-                        if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
-                                moveIsAvailable = false;
-                                i = (i/7 + 1)*7-1;
-                                break;
-                        }
-                }
-                if(moveIsAvailable)
-                        availableMoves.push_back(curFig->moves[i]);
-        }
-        return availableMoves;
+        return horizontal_vertical_availableMoves(4);
 }
 
 QVector<Move> AvailabeMovesFinder::knightFind(){
@@ -147,18 +108,34 @@ QVector<Move> AvailabeMovesFinder::knightFind(){
 }
 
 QVector<Move> AvailabeMovesFinder::bishopFind(){
+        return horizontal_vertical_availableMoves(4);
+}
+
+ QVector<Move> AvailabeMovesFinder::horizontal_vertical_availableMoves(const int totalMoveDirections){
         QVector<Move> availableMoves;
-        for(int i=0;i<7*4;i++){
+        for(int i=0;i<7*totalMoveDirections;i++){
                 bool moveIsAvailable = true;
+                bool endDirectionMovingSequence = false;
                 for(Figure* fig : players[currentTeam]->figures){
-                        if(Figure::intersect(curFig,curFig->moves[i],fig) && !Figure::outOfRange(curFig,curFig->moves[i])){
+                        if(Figure::intersect(curFig,curFig->moves[i],fig) || Figure::outOfRange(curFig,curFig->moves[i])){
                                 moveIsAvailable = false;
-                                i = (i/7 + 1)*7-1;
+                                i = (i/7 + 1)*7 - 1;
                                 break;
                         }
+
+                        //check if enemyFig Intersects
+                        for(Figure* enemyFig : players[!currentTeam]->figures){
+                                if(Figure::intersect(curFig, curFig->moves[i], enemyFig)){
+                                        endDirectionMovingSequence = true;                                        
+                                        break;
+                                }
+                        }
+                        if(endDirectionMovingSequence) break;
                 }
                 if(moveIsAvailable)
                         availableMoves.push_back(curFig->moves[i]);
+                if(endDirectionMovingSequence)
+                        i = (i/7 + 1)*7 - 1;
         }
         return availableMoves;
-}
+ }
