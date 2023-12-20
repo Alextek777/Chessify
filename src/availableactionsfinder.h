@@ -31,6 +31,10 @@ public:
 class AvailabeAtacksFinder : public AvailableActionsFinder {
 public:
         QVector<Move> find();
+
+        QVector<Move> defaultFind();
+        QVector<Move> pawnFind();
+        
         explicit AvailabeAtacksFinder(QVector<Player*> &players, Figure *fig, Team currentTeam);
 };
 
