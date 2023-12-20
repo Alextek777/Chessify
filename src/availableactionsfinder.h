@@ -22,7 +22,6 @@ protected:
         QVector<Move> knightFind();
         QVector<Move> bishopFind();
 
-        QVector<Move> horizontal_vertical_availableMoves(const int totalMoveDirections);
 public:
         QVector<Move> find();
         explicit AvailabeMovesFinder(QVector<Player*> &players, Figure *fig, Team currentTeam);
@@ -34,7 +33,7 @@ public:
 
         QVector<Move> defaultFind();
         QVector<Move> pawnFind();
-        
+
         explicit AvailabeAtacksFinder(QVector<Player*> &players, Figure *fig, Team currentTeam);
 };
 
