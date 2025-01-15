@@ -7,14 +7,14 @@ tasks:
       - cmake
     desc: "CMake project [automoc on]"
     cmds:
-      - cmake . -Bbuild
+      - cd build && cmake ..
 
   make:
     aliases:
       - make
     desc: "Make project"
     cmds:
-      - make -C ./build
+      - cd build && make
 
   clean:
     aliases:
@@ -37,4 +37,4 @@ tasks:
     desc: "Running Chessify"
     cmds:
       - task build
-      - ./build/chessify
+      - ./build/Chessify

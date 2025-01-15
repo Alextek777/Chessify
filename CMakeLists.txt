@@ -13,15 +13,34 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
+	src/sources/main.cpp
+	src/sources/availableactionsfinder.cpp  
+	src/sources/boardwidget.cpp  
+	src/sources/core.cpp  
+	src/sources/Definitions.cpp  
+	src/sources/mainwindow.cpp  
+	src/sources/player.cpp
+)
+
+set(PROJECT_HEADERS
+        src/headers/availableactionsfinder.h  
+        src/headers/boardwidget.h  
+        src/headers/core.h  
+        src/headers/Definitions.h  
+        src/headers/mainwindow.h  
+        src/headers/player.h
+)
+
+set(PROJECT_RESOURCES
+    src/resources.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Chessify
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${PROJECT_HEADERS}
+        ${PROJECT_RESOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Chessify APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -31,15 +50,21 @@ else()
     if(ANDROID)
         add_library(Chessify SHARED
             ${PROJECT_SOURCES}
+            ${PROJECT_HEADERS}
+            ${PROJECT_RESOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(Chessify
             ${PROJECT_SOURCES}
+            ${PROJECT_HEADERS}
+            ${PROJECT_RESOURCES}
         )
     endif()
 endif()
+
+target_include_directories(Chessify PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 target_link_libraries(Chessify PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 

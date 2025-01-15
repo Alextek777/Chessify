@@ -1,4 +1,4 @@
-#include "availableactionsfinder.h"
+#include "headers/availableactionsfinder.h"
 #include <iostream>
 
 AvailableActionsFinder::AvailableActionsFinder(QVector<Player*> &players, Figure *fig, Team currentTeam) : players(players), curFig(fig), currentTeam(currentTeam){

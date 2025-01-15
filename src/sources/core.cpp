@@ -1,4 +1,4 @@
-#include "core.h"
+#include "headers/core.h"
 
 Core::Core(QObject *parent) : QObject(parent){
         players.push_back(new Player(Team::White));

@@ -1,4 +1,4 @@
-#include "boardwidget.h"
+#include "headers/boardwidget.h"
 
 BoardWidget::BoardWidget(QWidget *parent) : QWidget(parent){
     core = new Core();

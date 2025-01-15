@@ -1,4 +1,4 @@
-#include "player.h"
+#include "headers/player.h"
 
 Player::Player(Team t) : team(t)
 {

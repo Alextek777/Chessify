@@ -1,4 +1,4 @@
-#include "Definitions.h"
+#include "headers/Definitions.h"
 
 Figure* Figure::create_pawn(const int start_x, const int start_y,const Team t){
     Figure *figure = new Figure(1,t);
@@ -11,7 +11,7 @@ Figure* Figure::create_pawn(const int start_x, const int start_y,const Team t){
         Move(0,1*teamFlag),
         Move(0,2*teamFlag)};
 
-    figure->imgPath = t == Team::White ? "./src/images/pieces/wp.png" : "./src/images/pieces/bp.png";
+    figure->imgPath = t == Team::White ? ":/images/pieces/wp.png" : ":/images/pieces/bp.png";
 
     return figure;
 }
@@ -34,7 +34,7 @@ Figure* Figure::create_king(const int start_x, const int start_y,const Team t){
         Move(2,0),      //castle right
         Move(-2,0)};    //castle left
 
-    figure->imgPath = t == Team::White ? "./src/images/pieces/wk.png" : "./src/images/pieces/bk.png";
+    figure->imgPath = t == Team::White ? ":/images/pieces/wk.png" : ":/images/pieces/bk.png";
 
     return figure;
 }
@@ -57,7 +57,7 @@ Figure* Figure::create_rook(const int start_x, const int start_y,const Team t){
     for(int i=1;i<8;i++) //left
         figure->moves.push_back(Move(-i,0));
 
-    figure->imgPath = t == Team::White ? "./src/images/pieces/wr.png" : "./src/images/pieces/br.png";
+    figure->imgPath = t == Team::White ? ":/images/pieces/wr.png" : ":/images/pieces/br.png";
 
     return figure;
 }
@@ -80,7 +80,7 @@ Figure* Figure::create_bishop(const int start_x, const int start_y,const Team t)
     for(int i=1;i<8;i++) //up left
         figure->moves.push_back(Move(-i,i));
 
-    figure->imgPath = t == Team::White ? "./src/images/pieces/wb.png" : "./src/images/pieces/bb.png";
+    figure->imgPath = t == Team::White ? ":/images/pieces/wb.png" : ":/images/pieces/bb.png";
 
     return figure;
 }
@@ -100,7 +100,7 @@ Figure* Figure::create_knight(const int start_x, const int start_y,const Team t)
     figure->moves.push_back(Move(-2,-1));
     figure->moves.push_back(Move(-2,1));
 
-    figure->imgPath = t == Team::White ? "./src/images/pieces/wkn.png" : "./src/images/pieces/bkn.png";
+    figure->imgPath = t == Team::White ? ":/images/pieces/wkn.png" : ":/images/pieces/bkn.png";
 
     return figure;
 }
@@ -139,7 +139,7 @@ Figure* Figure::create_queen(const int start_x, const int start_y,const Team t){
 
     //--------------------------------------
 
-    figure->imgPath = t == Team::White ? "./src/images/pieces/wq.png" : "./src/images/pieces/bq.png";
+    figure->imgPath = t == Team::White ? ":/images/pieces/wq.png" : ":/images/pieces/bq.png";
 
     return figure;
 }
