@@ -3,6 +3,7 @@
 BoardWidget::BoardWidget(QWidget *parent) : QWidget(parent){
     core = new Core();
     curCell = new Move(-1,-1);
+    setMinimumSize(QSize(600,600));
 
     connect(this,&BoardWidget::currentCellChanged,core,&Core::currentCellChanged);
 }
