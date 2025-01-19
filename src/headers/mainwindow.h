@@ -2,14 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "boardwidget.h"
 #include <QGridLayout>
+#include "menue.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    BoardWidget *board;
+    Menue *menueWidget;
 
     QWidget* centralWidget;
     QGridLayout* mainLayout;

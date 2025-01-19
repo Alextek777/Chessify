@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
 	src/sources/Definitions.cpp  
 	src/sources/mainwindow.cpp  
 	src/sources/player.cpp
+        src/sources/menue.cpp
 )
 
 set(PROJECT_HEADERS
@@ -29,6 +30,7 @@ set(PROJECT_HEADERS
         src/headers/Definitions.h  
         src/headers/mainwindow.h  
         src/headers/player.h
+        src/headers/menue.h
 )
 
 set(PROJECT_RESOURCES
